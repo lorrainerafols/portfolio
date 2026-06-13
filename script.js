@@ -227,3 +227,40 @@ form?.addEventListener('submit', async e => {
     submitBtn.textContent = 'Send Message';
   }
 });
+
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+
+    // Open clicked (if it was closed)
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  btn.addEventListener('keydown', e => {
+    const allBtns = [...document.querySelectorAll('.faq-question')];
+    const idx = allBtns.indexOf(btn);
+    if (e.key === 'ArrowDown') { e.preventDefault(); allBtns[Math.min(idx+1, allBtns.length-1)]?.focus(); }
+    if (e.key === 'ArrowUp')   { e.preventDefault(); allBtns[Math.max(idx-1, 0)]?.focus(); }
+  });
+});
+
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
