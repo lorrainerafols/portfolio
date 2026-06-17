@@ -150,7 +150,7 @@ nav.scrolled {
 .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--terra); }
 .hero-headline {
   font-family: var(--ff-display);
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
   line-height: 1.05; letter-spacing: -0.02em; font-weight: 700; color: var(--ink);
   margin-bottom: 28px;
   opacity: 0; transform: translateY(20px);
@@ -158,7 +158,7 @@ nav.scrolled {
 }
 .hero-headline em { font-style: italic; color: var(--terra); }
 .hero-sub {
-  font-size: 1.05rem; color: var(--ink-soft); max-width: 420px;
+  font-size: 1rem; color: var(--ink-soft); max-width: 500px;
   line-height: 1.75; margin-bottom: 48px;
   opacity: 0; transform: translateY(16px);
   animation: fadeUp 0.7s var(--ease-out) 0.5s forwards;
@@ -251,7 +251,7 @@ section { padding: 100px 60px; }
 
 #work { background: var(--white); }
 .work-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 60px; }
-.work-header-left { max-width: 480px; }
+.work-header-left { max-width: 650px; } /*change back to 480px if using filters*/
 .work-sub { color: var(--ink-soft); font-size: 1rem; line-height: 1.7; }
 .tabs { display: flex; gap: 4px; background: var(--sand); padding: 5px; align-self: flex-end; }
 .tab-btn {
@@ -276,11 +276,15 @@ section { padding: 100px 60px; }
 .card-thumb { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--sand); }
 .card-thumb-inner {
   width: 100%; height: 100%;
+      background-color: #dbdbdb;
   transition: transform 0.6s var(--ease-out);
   display: flex; align-items: center; justify-content: center;
 }
 .card:hover .card-thumb-inner { transform: scale(1.04); }
-.card-thumb-inner svg { width: 60%; height: 60%; opacity: 0.35; }
+.card-thumb-inner img {  width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;}
 .card-thumb-overlay {
   position: absolute; inset: 0; background: rgba(26,23,20,0.5);
   display: flex; align-items: center; justify-content: center;
@@ -1090,9 +1094,13 @@ footer .logo span { color: var(--terra); }
 }
  
 #benefits {
-  background: var(--sand);
+  background: var(--cream);
 }
- 
+
+#problem-heading em, #benefits-heading em {
+  color: var(--terra);
+}
+
 .pb-header {
   margin-bottom: 52px;
 }
@@ -1105,7 +1113,7 @@ footer .logo span { color: var(--terra); }
   font-size: 1.05rem;
   color: var(--ink-soft);
   line-height: 1.75;
-  max-width: 560px;
+  max-width: 650px;
   opacity: 0.85;
 }
  
