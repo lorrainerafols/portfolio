@@ -1079,3 +1079,95 @@ footer .logo span { color: var(--terra); }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+
+/* ===================================================================
+   PROBLEM & BENEFITS SECTIONS
+   =================================================================== */
+ 
+#problem {
+  background: var(--cream);
+}
+ 
+#benefits {
+  background: var(--sand);
+}
+ 
+.pb-header {
+  margin-bottom: 52px;
+}
+ 
+.pb-header .section-title {
+  margin-bottom: 16px;
+}
+ 
+.pb-lead {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 560px;
+  opacity: 0.85;
+}
+ 
+.pb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+ 
+.pb-list--problems .pb-item,
+.pb-list--benefits .pb-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px 20px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+ 
+.pb-list .pb-item:nth-child(even) {
+  padding-left: 28px;
+  border-left: 1px solid var(--border);
+}
+ 
+.pb-list .pb-item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+ 
+.pb-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+ 
+.pb-icon svg {
+  display: block;
+}
+ 
+/* Mobile: single column */
+@media (max-width: 600px) {
+  .pb-list {
+    grid-template-columns: 1fr;
+  }
+ 
+  .pb-list .pb-item:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+ 
+  .pb-list .pb-item:nth-last-child(-n+2) {
+    border-bottom: 1px solid var(--border);
+  }
+ 
+  .pb-list .pb-item:last-child {
+    border-bottom: none;
+  }
+}
+ 
