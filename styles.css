@@ -250,7 +250,7 @@ section { padding: 100px 60px; }
 }
 .section-title em { font-style: italic; color: var(--terra); }
 
-#work { background: var(--white); }
+#work { background: var(--cream); }
 .work-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 60px; }
 /*.work-header-left { max-width: 650px; } change back to 480px if using filters*/
 .work-sub { color: var(--ink-soft); font-size: 1.2rem; line-height: 1.7; }
@@ -267,7 +267,7 @@ section { padding: 100px 60px; }
 .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
 
 .card {
-  background: var(--cream); border: 1px solid var(--border);
+  background: var(--white); border: 1px solid var(--border);
   overflow: hidden; position: relative;
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
 }
@@ -1095,7 +1095,7 @@ footer .logo span { color: var(--terra); }
 }
  
 #benefits {
-  background: var(--cream);
+  background: var(--white);
 }
 
 #problem-heading em, #benefits-heading em {
