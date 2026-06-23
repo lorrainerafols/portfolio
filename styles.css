@@ -200,17 +200,11 @@ nav.scrolled {
   opacity: 0; transform: translateY(12px);
   animation: fadeUp 0.7s var(--ease-out) 0.8s forwards;
 }
-/*
-.hero-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 2px;
-}*/
  
 .stat-num { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1; }
-.stat-label { font-size: 0.85rem; color: var(--ink-soft); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px; }
+.stat-label { font-size: 0.85rem; color: var(--ink-soft); letter-spacing: 0.05em; text-transform: uppercase;
+display: flex; flex-direction: row; align-items: flex-start; justify-content: flex-start; gap: 14px;
+}
 .hero-right {
   position: relative; display: flex; align-items: center; justify-content: center;
   padding: 80px 60px 80px 20px;
