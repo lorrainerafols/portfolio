@@ -201,6 +201,10 @@ nav.scrolled {
   animation: fadeUp 0.7s var(--ease-out) 0.8s forwards;
 }
  
+@media (max-width: 768px) {
+  .hero-stats { flex-direction: column; gap: 24px; }
+}
+
 .stat-num { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1; }
 .stat-label { font-size: 0.85rem; color: var(--ink-soft); letter-spacing: 0.05em; text-transform: uppercase;
 display: flex; flex-direction: row; align-items: flex-start; justify-content: flex-start; gap: 14px;
