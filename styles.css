@@ -348,15 +348,14 @@ section { padding: 100px 60px; }
 }
 
 .testimonials-header {
-  max-width: 600px;
   margin-bottom: 64px;
 }
 
-/* Two-column layout: featured left, grid right */
 .testimonials-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  grid-template-rows: auto auto auto; /* three rows */
+  gap: 20px;
   align-items: start;
 }
 
@@ -373,9 +372,17 @@ section { padding: 100px 60px; }
   transform: translateY(-4px);
   box-shadow: 0 20px 48px rgba(26,23,20,0.08);
 }
-
-/* Featured card overrides */
+/*
+.testimonials-left {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+    align-self: stretch;
+}
+*/
 .tcard--featured {
+  grid-row: 1;
   background: var(--ink);
   border-color: var(--ink);
   padding: 52px 44px 44px;
@@ -408,20 +415,6 @@ section { padding: 100px 60px; }
   border-color: rgba(255,250,241,0.2);
 }
 
-/* Large open-quote mark */
-.tcard-quote-mark {
-  font-family: var(--ff-display);
-  font-size: 5rem;
-  line-height: 1;
-  color: var(--terra);
-  opacity: 0.2;
-  position: absolute;
-  top: 16px;
-  left: 28px;
-  user-select: none;
-  pointer-events: none;
-}
-
 .tcard-text {
   font-size: 0.9375rem;
   line-height: 1.8;
@@ -437,33 +430,10 @@ section { padding: 100px 60px; }
   flex: 1;
 }
 
-.tcard-divider {
-  width: 28px;
-  height: 1.5px;
-  background: var(--terra);
-  margin-bottom: 20px;
-}
-
 .tcard-author {
   display: flex;
   align-items: center;
   gap: 14px;
-}
-
-.tcard-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--sand);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--ff-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--terra);
-  flex-shrink: 0;
 }
 
 .tcard-name {
@@ -482,16 +452,11 @@ section { padding: 100px 60px; }
   margin-top: 2px;
 }
 
-/* Right-side 5-card grid: 2 top + 3 bottom / staggered */
 .testimonials-grid {
+  grid-row: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-}
-
-/* Make the last card (5th) span both columns */
-.testimonials-grid .tcard:last-child {
-  grid-column: 1 / -1;
 }
 
 /* Smaller padding for grid cards */
@@ -509,6 +474,11 @@ section { padding: 100px 60px; }
   font-size: 3.5rem;
   top: 12px;
   left: 20px;
+}
+
+.testimonials-james {
+  grid-column: 1 / -1; /* spans full width */
+  grid-row: 2;
 }
 
 /* LinkedIn footer link */
@@ -541,27 +511,32 @@ section { padding: 100px 60px; }
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .testimonials-layout {
-    grid-template-columns: 1fr;
-  }
-  .tcard--featured {
-    min-height: auto;
-  }
-  .testimonials-grid {
     grid-template-columns: 1fr 1fr;
+  }
+/*  .tcard--featured {
+    min-height: auto;
+  }*/
+  .tcard--featured, .testimonials-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .testimonials-grid {
+
+   .testimonials-layout {
+   display: flex;
+    flex-direction: column;
+  }
+
+  /*.tcard--featured, .testimonials-grid {
     grid-template-columns: 1fr;
-  }
-  .testimonials-grid .tcard:last-child {
-    grid-column: auto;
-  }
+  }*/
+
   .testimonials-linkedin {
     text-align: left;
   }
 }
+
 
 #cta {
   background: var(--ink);
