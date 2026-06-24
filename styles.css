@@ -457,12 +457,6 @@ section { padding: 100px 60px; }
   font-size: 0.9375rem;
   margin: 20px 0;
 }
-/*
-.testimonials-grid .tcard-quote-mark {
-  font-size: 3.5rem;
-  top: 12px;
-  left: 20px;
-}*/
 
 .testimonials-james {
   grid-column: 1 / -1; /* spans full width */
@@ -629,15 +623,37 @@ section { padding: 100px 60px; }
 .contact-sub { color: rgba(245,240,232,0.6); font-size: 1rem; line-height: 1.7; margin-bottom: 40px; }
 .contact-detail { display: flex; gap: 16px; margin-bottom: 20px; align-items: center; }
 .contact-detail-icon { width: 44px; height: 44px; border: 1px solid rgba(245,240,232,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; }
-.contact-detail-text { font-size: 0.9rem; color: rgba(245,240,232,0.7); }
-.contact-detail-text strong { display: block; color: var(--cream); font-weight: 500; margin-bottom: 2px; }
+.contact-detail-text { font-size: 0.9rem; color: var(--cream); }
+.contact-detail-text strong { display: block; color: var(--cream); font-weight: 500; margin-bottom: 15px; }
+
+.cta-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+ 
+.cta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+@media (max-width: 900px) {
+.cta-list {grid-template-columns: 1fr;
+} }
 
 .contact-form { display: flex; flex-direction: column; gap: 20px; }
 .required-note { font-size: 0.75rem; color: rgba(245,240,232,0.4); margin-bottom: 4px; }
 abbr[title] { text-decoration: none; color: var(--terra-light); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-group { display: flex; flex-direction: column; gap: 8px; }
-.form-group label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.55); font-weight: 500; }
+.form-group label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); font-weight: 500; }
 .form-group input,
 .form-group textarea,
 .form-group select {
