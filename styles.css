@@ -361,7 +361,7 @@ section { padding: 100px 60px; }
 .tcard {
   background: var(--white);
   border: 1px solid var(--border);
-  padding: 40px 36px 36px;
+  padding: 24px;
   position: relative;
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
 }
@@ -370,20 +370,12 @@ section { padding: 100px 60px; }
   transform: translateY(-4px);
   box-shadow: 0 20px 48px rgba(26,23,20,0.08);
 }
-/*
-.testimonials-left {
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-    align-self: stretch;
-}
-*/
+
 .tcard--featured {
   grid-row: 1;
   background: var(--ink);
   border-color: var(--ink);
-  padding: 52px 44px 44px;
+  padding: 24px;
   align-self: stretch; /* fills full height of the row */
   display: flex;
   flex-direction: column;
@@ -397,7 +389,7 @@ section { padding: 100px 60px; }
 
 .tcard--featured .tcard-text {
   color: rgba(255,250,241,0.92);
-  font-size: 1.05rem;
+  font-size: 0.9375rem;
 }
 
 .tcard--featured .tcard-divider {
@@ -417,13 +409,12 @@ section { padding: 100px 60px; }
   font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--ink);
-  margin-top: 36px; /* clears the quote mark */
-  margin-bottom: 28px;
+ margin: 20px 0; 
   position: relative;
 }
 
 .tcard-text--featured {
-  font-size: 1.05rem;
+  font-size: 0.9375rem;
   line-height: 1.85;
   flex: 1;
 }
@@ -459,20 +450,19 @@ section { padding: 100px 60px; }
 
 /* Smaller padding for grid cards */
 .testimonials-grid .tcard {
-  padding: 28px 24px 24px;
+  padding: 24px;
 }
 
 .testimonials-grid .tcard-text {
-  font-size: 0.875rem;
-  margin-top: 28px;
-  margin-bottom: 20px;
+  font-size: 0.9375rem;
+  margin: 20px 0;
 }
-
+/*
 .testimonials-grid .tcard-quote-mark {
   font-size: 3.5rem;
   top: 12px;
   left: 20px;
-}
+}*/
 
 .testimonials-james {
   grid-column: 1 / -1; /* spans full width */
@@ -525,10 +515,6 @@ section { padding: 100px 60px; }
    display: flex;
     flex-direction: column;
   }
-
-  /*.tcard--featured, .testimonials-grid {
-    grid-template-columns: 1fr;
-  }*/
 
   .testimonials-linkedin {
     text-align: left;
@@ -803,7 +789,7 @@ footer .logo span { color: var(--terra); }
   .nav-toggle { display: flex; } 
   */
   #hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 110px 24px 48px; }
+  .hero-left { padding: 110px 0 48px; }
   .hero-right { display: none; }
   section { padding: 64px 24px; }
   #work { padding: 64px 24px; }
