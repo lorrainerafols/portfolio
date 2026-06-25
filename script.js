@@ -173,17 +173,13 @@ form?.addEventListener('submit', async e => {
     form.reset(); return;
   }
 
-  const fname    = sanitise(form.fname.value);
-  const lname    = sanitise(form.lname.value);
-  const email    = sanitise(form.email.value);
-  const platform = sanitise(form.platform.value);
-  const message  = sanitise(form.message.value);
+  const name = sanitise(form.name.value);
+const email = sanitise(form.email.value);
+const message = sanitise(form.message.value);
 
   const errors = [];
-  if(fname.length < 2)     errors.push(['fname','Please enter your first name (at least 2 characters).']);
-  if(lname.length < 2)     errors.push(['lname','Please enter your last name (at least 2 characters).']);
+  if(name.length < 2) errors.push(['name','Please enter your name.']);
   if(!isValidEmail(email)) errors.push(['email','Please enter a valid email address.']);
-  if(!platform)            errors.push(['platform','Please select a platform.']);
   if(message.length < 20)  errors.push(['message','Please describe your project (at least 20 characters).']);
 
   if(errors.length > 0){
@@ -197,7 +193,7 @@ form?.addEventListener('submit', async e => {
   form.querySelectorAll('[aria-invalid]').forEach(el=>el.removeAttribute('aria-invalid'));
 
   const subjectEl = document.getElementById('emailSubject');
-  if(subjectEl) subjectEl.value = `New inquiry from ${fname} ${lname} — ${platform}`;
+  if(subjectEl) subjectEl.value = `New inquiry from ${name}`;
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending…';
@@ -207,7 +203,9 @@ form?.addEventListener('submit', async e => {
     const res = await fetch(form.action, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fname, lname, email, platform, message, _replyto: email }),
+      body: JSON.stringify({  name,
+    email,
+    message }),
     });
 
     if(res.ok){
