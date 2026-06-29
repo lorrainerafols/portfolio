@@ -366,13 +366,13 @@
 <!-- sticky download bar (hidden on print) -->
 <div class="download-bar">
   <span class="download-bar-label">Lorraine Claire Rafols · CV</span>
-  <button class="btn-download" onclick="window.print()">
+  <button class="btn-download" id="dlBtn" onclick="downloadPDF()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     Download PDF
   </button>
 </div>
 
-<div class="page">
+<div class="page" id="cv-content">
 
   <!-- HEADER -->
   <header class="cv-header">
@@ -606,6 +606,64 @@
   </footer>
 
 </div><!-- /page -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+  function downloadPDF() {
+    const btn = document.getElementById('dlBtn');
+    btn.disabled = true;
+    btn.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      Generating…`;
+
+    const element = document.getElementById('cv-content');
+
+    const opt = {
+      margin:      [12, 14, 12, 14],   // top, right, bottom, left (mm)
+      filename:    'Lorraine-Rafols-CV.pdf',
+      image:       { type: 'jpeg', quality: 0.98 },
+      html2canvas: {
+        scale: 2,                       // retina-quality render
+        useCORS: true,
+        backgroundColor: '#FAFAF8'
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+
+    async function downloadPDF() {
+    await document.fonts.ready;
+ };
+
+    html2pdf()
+      .set(opt)
+      .from(element)
+      .save()
+      .then(() => {
+        btn.disabled = false;
+        btn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Downloaded!`;
+        setTimeout(() => {
+          btn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF`;
+        }, 3000);
+      });
+  }
+
+  // spinner keyframe
+  const style = document.createElement('style');
+  style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+  document.head.appendChild(style);
+</script>
+
 
 </body>
 </html>
