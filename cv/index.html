@@ -7,500 +7,605 @@
   <meta name="description" content="WordPress & Shopify Developer with 5+ years of experience. Based in Cebu, Philippines." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:           #FAFAF8;
+      --surface:      #FFFFFF;
+      --card:         #F5F4F1;
+      --orange:       #D97B3A;
+      --orange-light: #FDF0E6;
+      --black:        #111111;
+      --dark:         #1E1E1E;
+      --mid:          #555555;
+      --muted:        #888888;
+      --border:       #E4E2DC;
+      --max:          780px;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #FDF6EC;
-      --surface: #FFFFFF;
-      --card: #F5F4F1;
-      --orange: #D27C3E;
-      --orange-light: #FDF0E6;
-      --dark: #222222;
-      --mid: #555555;
-      --muted: #888888;
-      --border: #E4E2DC;
-    }
+    html { background: var(--bg); }
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
+    body {
       font-family: 'Inter', sans-serif;
       color: var(--dark);
-      overflow: hidden;
-    }
-
-    /* ── DECK ── */
-    .deck {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .slides {
-      display: flex;
-      height: 100%;
-      transition: transform 0.42s cubic-bezier(0.4,0,0.2,1);
-      will-change: transform;
-    }
-
-    .slide {
-      min-width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(28px,5vw,60px) clamp(28px,7vw,80px) 80px;
-      position: relative;
-      overflow: hidden;
       background: var(--bg);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── LOGO ── */
-    .logo {
-      position: absolute;
-      top: 24px; left: clamp(28px,7vw,80px);
-      font-size: 16px; font-weight: 600;
-      color: var(--dark);
-      letter-spacing: -0.01em;
+    /* ── LAYOUT ── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 40px 80px;
+    }
+
+    /* ── DOWNLOAD BTN ── */
+    .download-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .download-bar-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
+      transition: opacity 0.18s;
       text-decoration: none;
     }
-    .logo span { color: var(--orange); }
+    .btn-download:hover { opacity: 0.88; }
+    .btn-download svg { flex-shrink: 0; }
 
-    /* ── TYPE ── */
-    .eyebrow {
-      font-size: 10px; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--orange);
-      font-weight: 500; margin-bottom: 14px;
+    /* ── HEADER ── */
+    .cv-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 24px;
+      padding-bottom: 36px;
+      border-bottom: 2px solid var(--black);
+      margin-bottom: 36px;
     }
+    .cv-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .cv-name em { font-style: italic; color: var(--orange); }
+    .cv-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .cv-location {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .cv-contact {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-top: 6px;
+    }
+    .cv-contact a, .cv-contact span {
+      font-size: 12.5px;
+      color: var(--mid);
+      text-decoration: none;
+      display: block;
+    }
+    .cv-contact a:hover { color: var(--orange); }
 
-    .slide-title {
-      font-family: 'Manrope', sans-serif;
-      font-size: clamp(24px,3.5vw,38px);
-      font-weight: 700; color: var(--dark);
-      line-height: 1.15; margin-bottom: 6px;
-    }
-    .slide-title em { font-style: italic; color: var(--orange); }
-
-    .orange-rule {
-      width: 36px; height: 2px;
-      background: var(--orange);
-      margin: 16px 0 20px;
-    }
-
-    /* ── HERO ── */
-    .hero-name {
-      font-family: 'Manrope', sans-serif;
-      font-size: clamp(36px,6vw,58px);
-      font-weight: 700; color: var(--dark);
-      line-height: 1.1; margin-bottom: 8px;
-    }
-    .hero-name em { font-style: italic; color: var(--orange); }
-    .hero-role {
-      font-size: 14px; font-weight: 500;
-      color: var(--mid); letter-spacing: 0.04em; margin-bottom: 22px;
-    }
-    .hero-body {
-      font-size: 14px; line-height: 1.75;
-      color: var(--mid); max-width: 520px; margin-bottom: 28px;
-    }
-
-    .hero-deco {
-      position: absolute; right: clamp(40px,7vw,80px);
-      top: 50%; transform: translateY(-50%);
-      width: clamp(100px,15vw,180px); height: clamp(100px,15vw,180px);
-      border-radius: 50%; border: 1.5px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-    }
-    .hero-deco::before {
-      content: '';
-      width: 68%; height: 68%;
-      border-radius: 50%;
-      border: 1px solid var(--orange); opacity: 0.3;
-    }
-
-    /* ── PILLS ── */
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    .pill {
-      font-size: 11px; padding: 5px 14px;
-      border-radius: 20px; border: 1px solid var(--border);
-      color: var(--dark); background: var(--surface); font-weight: 500;
-    }
-    .pill.accent {
+    /* ── OBJECTIVE ── */
+    .cv-objective {
       background: var(--orange-light);
-      border-color: var(--orange); color: var(--orange);
+      border-left: 3px solid var(--orange);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--dark);
+      margin-bottom: 40px;
     }
 
-    /* ── BODY / TAGS ── */
-    .body-text {
-      font-size: 15px; line-height: 1.8;
-      color: var(--dark); max-width: 560px; margin-bottom: 24px;
-    }
-    .body-text strong { color: var(--dark); font-weight: 600; }
+    /* ── SECTION ── */
+    .section { margin-bottom: 36px; }
+    .section:last-child { margin-bottom: 0; }
 
-    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+    .section-heading {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── EXPERIENCE ENTRY ── */
+    .job { margin-bottom: 28px; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 3px;
+    }
+    .job-role {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+    }
+    .job-period {
+      font-size: 11.5px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .job-company {
+      font-size: 12.5px;
+      color: var(--orange);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .job-type {
+      display: inline-block;
+      font-size: 10px;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 7px;
+      margin-left: 6px;
+      vertical-align: middle;
+      font-weight: 400;
+    }
+
+    ul.bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    ul.bullets li {
+      font-size: 13px;
+      color: var(--mid);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+    ul.bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 10px;
+      top: 3px;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; }
     .tag {
-      font-size: 11px; padding: 4px 12px;
-      border-radius: 4px; background: var(--orange-light);
-      color: var(--orange); border: 1px solid rgba(232,118,42,0.2); font-weight: 500;
+      font-size: 10px;
+      padding: 2px 9px;
+      border-radius: 3px;
+      background: var(--card);
+      color: var(--mid);
+      border: 1px solid var(--border);
+      font-weight: 500;
     }
 
-    /* ── JOB ── */
-    .job-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 22px; }
-    .job-badge {
-      width: 46px; height: 46px; border-radius: 10px;
-      background: var(--orange-light); border: 1px solid rgba(232,118,42,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0;
+    /* ── SKILLS GRID ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
-    .job-role { font-size: clamp(15px,2vw,20px); font-weight: 600; color: var(--dark); margin-bottom: 3px; }
-    .job-co { font-size: 12px; color: var(--orange); font-weight: 600; margin-bottom: 2px; letter-spacing: 0.02em; }
-    .job-period { font-size: 12px; color: var(--muted); }
-
-    .bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .bullets li {
-      font-size: 13px; color: var(--mid);
-      line-height: 1.6; padding-left: 18px; position: relative;
+    .skill-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 13px 15px;
     }
-    .bullets li::before {
-      content: '→'; position: absolute; left: 0;
-      color: var(--orange); font-size: 11px; top: 2px;
+    .skill-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--border);
     }
-
-    .tag-row-sm { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-    .tag-sm {
-      font-size: 10px; padding: 3px 10px;
-      border-radius: 3px; background: var(--card);
-      color: var(--mid); border: 1px solid var(--border); font-weight: 500;
+    .skill-items {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.85;
     }
-
-    /* ── EARLIER ── */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .mini-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px 18px;
-    }
-    .mini-role { font-size: 12px; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
-    .mini-co { font-size: 11px; color: var(--orange); font-weight: 500; margin-bottom: 2px; }
-    .mini-period { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
-    .mini-note { font-size: 11.5px; color: var(--mid); line-height: 1.55; }
-
-    /* ── SKILLS ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-    .skill-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px 16px;
-    }
-    .skill-cat {
-      font-size: 9px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--orange);
-      font-weight: 600; margin-bottom: 8px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .skill-cat::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
-    .skill-items { font-size: 12px; color: var(--mid); line-height: 1.9; }
 
     /* ── EDU ── */
-    .edu-list { display: flex; flex-direction: column; gap: 14px; }
-    .edu-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 15px 18px;
-      display: flex; gap: 14px; align-items: flex-start;
+    .edu-entry { margin-bottom: 16px; }
+    .edu-entry:last-child { margin-bottom: 0; }
+    .edu-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 12px;
     }
-    .edu-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-    .edu-deg { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
-    .edu-school { font-size: 11px; color: var(--orange); font-weight: 500; margin-bottom: 5px; }
-    .edu-note { font-size: 12px; color: var(--mid); line-height: 1.55; }
-
-    /* ── CONTACT ── */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .contact-item {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 14px 16px; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 10px;
+    .edu-deg {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--black);
     }
-    .contact-dot {
-      width: 8px; height: 8px; background: var(--orange);
-      border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+    .edu-period {
+      font-size: 11.5px;
+      color: var(--muted);
+      white-space: nowrap;
     }
-    .contact-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
-    .contact-val { font-size: 13px; font-weight: 500; color: var(--dark); }
-    .cta-btn {
-      display: inline-block; margin-top: 24px;
-      background: var(--orange); color: #fff;
-      padding: 12px 28px; border-radius: 6px;
-      font-size: 13px; font-weight: 600;
-      text-decoration: none; letter-spacing: 0.02em;
-      transition: opacity 0.18s;
+    .edu-school {
+      font-size: 12px;
+      color: var(--orange);
+      font-weight: 500;
+      margin-top: 2px;
+      margin-bottom: 4px;
     }
-    .cta-btn:hover { opacity: 0.88; }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed; bottom: 24px; left: 0; right: 0;
-      display: flex; align-items: center; justify-content: center; gap: 24px;
-      z-index: 10;
-    }
-    .nav-btn {
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--mid); width: 36px; height: 36px;
-      border-radius: 50%; cursor: pointer; font-size: 16px;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.18s;
-    }
-    .nav-btn:hover:not(:disabled) { border-color: var(--orange); color: var(--orange); }
-    .nav-btn:disabled { opacity: 0.3; cursor: default; }
-
-    .dots { display: flex; gap: 6px; align-items: center; }
-    .dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--border); cursor: pointer; transition: all 0.22s;
-    }
-    .dot.active { background: var(--orange); transform: scale(1.5); }
-
-    .slide-num {
-      position: fixed; top: 24px; right: clamp(28px,7vw,80px);
-      font-size: 11px; color: var(--muted);
+    .edu-note {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.55;
     }
 
-    .progress-bar {
-      position: fixed; top: 0; left: 0;
-      height: 2px; background: var(--orange);
-      transition: width 0.42s cubic-bezier(0.4,0,0.2,1);
-      z-index: 20;
+    /* ── DIVIDER between jobs ── */
+    .job-divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 20px 0;
     }
 
-    /* ── KB HINT ── */
-    .kb-hint {
-      position: fixed; bottom: 26px; right: clamp(28px,7vw,80px);
-      font-size: 10px; color: var(--muted); letter-spacing: 0.05em;
+    /* ── FOOTER ── */
+    .cv-footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cv-footer-logo {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .cv-footer-logo span { color: var(--orange); }
+    .cv-footer-note {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 18mm 20mm;
+      }
+
+      html, body { background: #fff !important; }
+
+      .download-bar { display: none !important; }
+
+      .page {
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .cv-header { padding-bottom: 20px; margin-bottom: 20px; }
+      .cv-name { font-size: 34px; }
+      .cv-objective { margin-bottom: 24px; }
+      .section { margin-bottom: 22px; }
+      .job { margin-bottom: 18px; }
+
+      .skills-grid { grid-template-columns: repeat(3,1fr); gap: 8px; }
+      .skill-block { padding: 10px 12px; break-inside: avoid; }
+
+      .job { break-inside: avoid; }
+      .edu-entry { break-inside: avoid; }
+
+      .cv-footer { margin-top: 28px; }
+
+      /* ensure orange prints */
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 </head>
 <body>
 
-<div class="progress-bar" id="prog"></div>
-<div class="slide-num" id="num">1 / 8</div>
-<div class="kb-hint">← → to navigate</div>
+<!-- sticky download bar (hidden on print) -->
+<div class="download-bar">
+  <span class="download-bar-label">Lorraine Claire Rafols · CV</span>
+  <button class="btn-download" onclick="window.print()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download PDF
+  </button>
+</div>
 
-<main class="deck" id="deck">
-  <div class="slides" id="slides">
+<div class="page">
 
-    <!-- 1: HERO -->
-    <section class="slide" aria-label="Introduction">
-      <a class="logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
-      <div class="hero-deco" aria-hidden="true"></div>
-      <div class="eyebrow">Interactive CV · 2025</div>
-      <div class="hero-name">Lorraine <em>Rafols</em></div>
-      <div class="hero-role">WordPress &amp; Shopify Developer &middot; 5+ Years</div>
-      <div class="hero-body">My work objective is to help businesses attract more customers online and establish their credibility with a professional website designed and developed with accessibility, security, SEO and performance in mind.</div>
-      <div class="pill-row">
-        <span class="pill">Cebu City, Philippines &middot; Remote</span>
-        <span class="pill">+63 931 785 8545</span>
-        <span class="pill">workwithraine@gmail.com</span>
+  <!-- HEADER -->
+  <header class="cv-header">
+    <div>
+      <div class="cv-name">Lorraine Claire <em>Rafols</em></div>
+      <div class="cv-title">WordPress &amp; Shopify Developer</div>
+      <div class="cv-location">Cebu City, Philippines &middot; Remote worldwide</div>
+    </div>
+    <div class="cv-contact">
+      <a href="mailto:workwithraine@gmail.com">workwithraine@gmail.com</a>
+      <a href="tel:+639317858545">+63 931 785 8545</a>
+      <a href="https://lorrainerafols.com" target="_blank">lorrainerafols.com</a>
+        <a href="https://www.linkedin.com/in/lorrainerafols/" target="_blank">linkedin.com/in/lorrainerafols</a>
+
+    </div>
+  </header>
+
+  <!-- OBJECTIVE -->
+  <div class="cv-objective">
+    I help businesses attract more customers online and establish their credibility with a professional website designed and developed with accessibility, security, SEO, and performance in mind. I take ownership of projects, communicate clearly, and deliver independently — no surprises, no hand-holding required.
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="section-heading">Experience</div>
+
+    <!-- Freelance -->
+    <div class="job">
+      <div class="job-top">
+        <div class="job-role">Freelance Web Developer</div>
+        <div class="job-period">Jan 2021 – Present</div>
       </div>
-    </section>
-<!--
-        <span class="tag">Shopify Liquid</span>
-        <span class="tag">WordPress</span>
-        <span class="tag">Webflow</span>
-        <span class="tag">HTML / CSS / JS</span>
-        <span class="tag">Figma</span>
-        <span class="tag">Technical SEO</span>
-        <span class="tag">Core Web Vitals</span>
-        <span class="tag">Platform Migrations</span>
-      </div>
-    </section>
--->
-    <!-- 2: FREELANCE -->
-    <section class="slide" aria-label="Freelance experience">
-      <a class="logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
-      <div class="eyebrow">Experience &middot; 2021–Present</div>
-      <div class="job-header">
-        <div class="job-badge">🌐</div>
-        <div>
-          <div class="job-role">Freelance Web Developer</div>
-          <div class="job-co">Lorraine Rafols &middot; Independent</div>
-          <div class="job-period">Jan 2021 – Present &middot; 5+ years</div>
-        </div>
-      </div>
+      <div class="job-company">Lorraine Rafols <span class="job-type">Independent</span></div>
       <ul class="bullets">
-        <li>Custom WordPress and Shopify builds from concept to launch for clients across PH, US, AU and more</li>
+        <li>Custom WordPress and Shopify websites from concept to launch for clients across PH, US, AU and beyond</li>
         <li>Website redesigns focused on usability, credibility, and user experience</li>
-        <li>Performance optimization — GT Metrix grade E to A on record; Core Web Vitals fixes</li>
+        <li>Performance optimization — GT Metrix grade E to A on record; Core Web Vitals remediation</li>
         <li>Platform migrations preserving content, orders, users, and search visibility</li>
-        <li>Ongoing maintenance, support, and white-label development for agencies</li>
+        <li>Ongoing maintenance, technical support, and white-label development for agencies</li>
       </ul>
-      <div class="tag-row-sm">
-        <span class="tag-sm">Shopify</span>
-        <span class="tag-sm">WordPress</span>
-        <span class="tag-sm">Speed Optimization</span>
-        <span class="tag-sm">Platform Migration</span>
-        <span class="tag-sm">White-label</span>
+      <div class="tag-row">
+        <span class="tag">Shopify</span>
+        <span class="tag">WordPress</span>
+        <span class="tag">Speed Optimization</span>
+        <span class="tag">Platform Migration</span>
+        <span class="tag">White-label</span>
       </div>
-    </section>
+    </div>
 
-    <!-- 3: BEAR ESSENTIALS -->
-    <section class="slide" aria-label="Bear Essentials role">
-      <a class="logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
-      <div class="eyebrow">Experience &middot; 2024–2026</div>
-      <div class="job-header">
-        <div class="job-badge">🏕️</div>
-        <div>
-          <div class="job-role">Shopify Developer &amp; SEO Specialist</div>
-          <div class="job-co">The Bear Essentials Outdoors Co. &middot; Full-time</div>
-          <div class="job-period">Aug 2024 – May 2026 &middot; 1 yr 10 mos</div>
-        </div>
+    <hr class="job-divider" />
+
+    <!-- Bear Essentials -->
+    <div class="job">
+      <div class="job-top">
+        <div class="job-role">Shopify Developer &amp; SEO Specialist</div>
+        <div class="job-period">Aug 2024 – May 2026</div>
       </div>
+      <div class="job-company">The Bear Essentials Outdoors Co. <span class="job-type">Full-time</span></div>
       <ul class="bullets">
         <li>Built and customized Shopify pages, PDPs, and templates using Liquid, HTML, CSS, and JavaScript</li>
-        <li>Theme-level improvements, layout refinements, and custom feature development</li>
-        <li>On-page and technical SEO: metadata, internal linking, indexing fixes, site structure</li>
+        <li>Implemented theme-level improvements, layout refinements, and custom section features</li>
+        <li>Delivered on-page and technical SEO improvements: metadata, internal linking, indexing fixes, site structure</li>
         <li>Ongoing maintenance: troubleshooting, backups, migrations, and performance audits</li>
       </ul>
-      <div class="tag-row-sm">
-        <span class="tag-sm">Shopify Liquid</span>
-        <span class="tag-sm">Theme Dev</span>
-        <span class="tag-sm">Technical SEO</span>
-        <span class="tag-sm">Core Web Vitals</span>
-        <span class="tag-sm">JavaScript</span>
+      <div class="tag-row">
+        <span class="tag">Shopify Liquid</span>
+        <span class="tag">Theme Dev</span>
+        <span class="tag">Technical SEO</span>
+        <span class="tag">Core Web Vitals</span>
+        <span class="tag">JavaScript</span>
       </div>
-    </section>
+    </div>
 
-    <!-- 4: EARLIER -->
-    <section class="slide" aria-label="Earlier roles">
-      <a class="logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
-      <div class="eyebrow">Earlier Experience</div>
-      <div class="slide-title" style="font-size:clamp(20px,2.5vw,26px); margin-bottom:16px;">Agency &amp; Studio <em>Work</em></div>
-      <div class="grid-2">
-        <div class="mini-card">
-          <div class="mini-role">WordPress &amp; Shopify Developer</div>
-          <div class="mini-co">360 Total Imaging &middot; Full-time</div>
-          <div class="mini-period">Feb 2021 – Oct 2024 &middot; 3 yrs 9 mos</div>
-          <div class="mini-note">Responsive WordPress and Shopify builds for third-party clients across industries. Maintenance, troubleshooting, and ongoing updates.</div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-role">UI/UX Designer</div>
-          <div class="mini-co">Boost Online AU &middot; Part-time</div>
-          <div class="mini-period">Aug 2021 – Apr 2022 &middot; 9 mos</div>
-          <div class="mini-note">Conversion-aware wireframes in Figma for WordPress builds. Dev-ready design files, component organization, and asset optimization.</div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-role">WordPress &amp; Digital Marketing Support</div>
-          <div class="mini-co">83bar &middot; Full-time</div>
-          <div class="mini-period">Jun 2019 – Dec 2020 &middot; 1 yr 7 mos</div>
-          <div class="mini-note">Blog development, SEO foundations, marketing asset creation. Onboarding and project coordination in a remote team.</div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-role">Blog Contributor</div>
-          <div class="mini-co">SelfPublishing.com &middot; Freelance</div>
-          <div class="mini-period">Jun 2019 – Dec 2020 &middot; 1 yr 7 mos</div>
-          <div class="mini-note">Long-form SEO blog posts on digital marketing, web design, and publishing for self-published authors.</div>
-        </div>
+    <hr class="job-divider" />
+
+    <!-- 360 Total Imaging -->
+    <div class="job">
+      <div class="job-top">
+        <div class="job-role">WordPress &amp; Shopify Developer</div>
+        <div class="job-period">Feb 2021 – Oct 2024</div>
       </div>
-    </section>
-
-    <!-- 5: SKILLS -->
-    <section class="slide" aria-label="Skills">
-      <a class="logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
-      <div class="eyebrow">Capabilities</div>
-      <div class="slide-title" style="font-size:clamp(20px,2.5vw,26px); margin-bottom:16px;">Skills &amp; <em>Tools</em></div>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="skill-cat">Development</div><div class="skill-items">Shopify / Liquid<br>WordPress / PHP<br>Webflow<br>HTML, CSS, JS<br>Custom sections</div></div>
-        <div class="skill-card"><div class="skill-cat">Performance &amp; SEO</div><div class="skill-items">Core Web Vitals<br>Technical SEO<br>On-page SEO<br>Speed audits<br>Internal linking</div></div>
-        <div class="skill-card"><div class="skill-cat">Design</div><div class="skill-items">Figma<br>UI/UX wireframing<br>Conversion design<br>Asset optimization<br>Design systems</div></div>
-        <div class="skill-card"><div class="skill-cat">Ecommerce</div><div class="skill-items">Shopify Partner<br>Product migrations<br>Theme development<br>PDP optimization<br>Conversion features</div></div>
-        <div class="skill-card"><div class="skill-cat">Content &amp; Writing</div><div class="skill-items">SEO blog writing<br>Copywriting<br>Page copy<br>Content formatting<br>Brand voice</div></div>
-        <div class="skill-card"><div class="skill-cat">Client &amp; Project</div><div class="skill-items">Scoped proposals<br>White-label work<br>Client comms<br>Project coordination<br>Remote teams</div></div>
+      <div class="job-company">360 Total Imaging <span class="job-type">Full-time · 3 yrs 9 mos</span></div>
+      <ul class="bullets">
+        <li>Developed responsive WordPress and Shopify websites for third-party clients across multiple industries</li>
+        <li>Collaborated on content and layout changes to improve clarity and navigation</li>
+        <li>Handled maintenance, troubleshooting, and ongoing website updates</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">Shopify</span>
+        <span class="tag">WordPress</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
       </div>
-    </section>
+    </div>
 
-    <!-- 6: EDUCATION -->
-    <section class="slide" aria-label="Education and background">
-      <a class="logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
-      <div class="eyebrow">Background</div>
-      <div class="slide-title" style="font-size:clamp(20px,2.5vw,26px); margin-bottom:16px;">Education &amp; <em>Roots</em></div>
-      <div class="edu-list">
-        <div class="edu-card"><div class="edu-icon">📚</div><div><div class="edu-deg">Bachelor of Library and Information Science</div><div class="edu-school">University of San Carlos</div><div class="edu-note">Information architecture, research, and knowledge organization — carries directly into site structure and content strategy.</div></div></div>
-        <div class="edu-card"><div class="edu-icon">🎨</div><div><div class="edu-deg">High School Teacher</div><div class="edu-school">LWCLC &middot; Sep 2015 – May 2019</div><div class="edu-note">Taught visual design, contemporary art, digital filmmaking, creative writing, and literature for high school students.</div></div></div>
-        <div class="edu-card"><div class="edu-icon">🏛️</div><div><div class="edu-deg">Multimedia Librarian</div><div class="edu-school">Cebu Institute of Technology &middot; Jan 2012 – May 2015</div><div class="edu-note">Rebranded library assets, produced a virtual tour, conducted database workshops, managed AV room and a team of working scholars.</div></div></div>
+    <hr class="job-divider" />
+
+    <!-- Boost Online AU -->
+    <div class="job">
+      <div class="job-top">
+        <div class="job-role">UI/UX Designer</div>
+        <div class="job-period">Aug 2021 – Apr 2022</div>
       </div>
-    </section>
-
-    <!-- 7: CONTACT -->
-    <section class="slide" aria-label="Contact">
-      <a class="logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
-      <div class="eyebrow">Let's work together</div>
-      <div class="slide-title">Let's Work <em>Together</em></div>
-      <div class="orange-rule"></div>
-      <div class="body-text" style="margin-bottom:24px;">Available for freelance projects, white-label partnerships, and ongoing retainers. Based in Cebu, Philippines — working with clients remotely worldwide.</div>
-      <div class="contact-grid">
-        <div class="contact-item"><div class="contact-dot"></div><div><div class="contact-label">Location</div><div class="contact-val">Cebu City, Philippines &middot; Remote</div></div></div>
-        <div class="contact-item"><div class="contact-dot"></div><div><div class="contact-label">Availability</div><div class="contact-val">Freelance &middot; Part-Time &middot; Retainer &middot; White-label</div></div></div>
-        <div class="contact-item"><div class="contact-dot"></div><div><div class="contact-label">Phone & Email</div><div class="contact-val">+63 931 785 8545 &middot; workwithraine@gmail.com</div></div></div>
-        <div class="contact-item"><div class="contact-dot"></div><div><div class="contact-label">Website</div><div class="contact-val">lorrainerafols.com</div></div></div>
+      <div class="job-company">Boost Online AU <span class="job-type">Part-time · 9 mos</span></div>
+      <ul class="bullets">
+        <li>Designed conversion-aware wireframes and page sections in Figma for WordPress builds</li>
+        <li>Prepared dev-ready design files and organized components for smooth handoff</li>
+        <li>Optimized image assets for performance and consistency across pages</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">Figma</span>
+        <span class="tag">UI/UX Design</span>
+        <span class="tag">Wireframing</span>
+        <span class="tag">Asset Optimization</span>
       </div>
-      <a href="https://lorrainerafols.com/#contact" class="cta-btn">Start a Project</a>
-    </section>
+    </div>
 
-  </div>
-</main>
+    <hr class="job-divider" />
 
-<nav class="nav" aria-label="Slide navigation">
-  <button class="nav-btn" id="prev" disabled aria-label="Previous slide">&#8592;</button>
-  <div class="dots" id="dots"></div>
-  <button class="nav-btn" id="next" aria-label="Next slide">&#8594;</button>
-</nav>
+    <!-- 83bar -->
+    <div class="job">
+      <div class="job-top">
+        <div class="job-role">WordPress &amp; Digital Marketing Support</div>
+        <div class="job-period">Jun 2019 – Dec 2020</div>
+      </div>
+      <div class="job-company">83bar <span class="job-type">Full-time · 1 yr 7 mos</span></div>
+      <ul class="bullets">
+        <li>Improved WordPress websites through blog development, SEO foundations, and content organization</li>
+        <li>Created and rebranded marketing assets and reports for digital campaigns</li>
+        <li>Assisted with new hire training, onboarding, and project coordination in a remote team</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">WordPress</span>
+        <span class="tag">SEO</span>
+        <span class="tag">Digital Marketing</span>
+        <span class="tag">Project Coordination</span>
+      </div>
+    </div>
 
-<script>
-  const total = 8; let cur = 0;
-  const slidesEl = document.getElementById('slides');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
-  const dotsEl = document.getElementById('dots');
-  const numEl = document.getElementById('num');
-  const progEl = document.getElementById('prog');
+    <hr class="job-divider" />
 
-  for (let i = 0; i < total; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Slide ' + (i + 1));
-    d.addEventListener('click', () => go(i));
-    dotsEl.appendChild(d);
-  }
+    <!-- SelfPublishing -->
+    <div class="job">
+      <div class="job-top">
+        <div class="job-role">Blog Contributor</div>
+        <div class="job-period">Jun 2019 – Dec 2020</div>
+      </div>
+      <div class="job-company">SelfPublishing.com <span class="job-type">Freelance · 1 yr 7 mos</span></div>
+      <ul class="bullets">
+        <li>Wrote long-form, SEO-optimized blog posts on digital marketing, web design, and book publishing for an audience of self-published authors</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">SEO Writing</span>
+        <span class="tag">Blogging</span>
+        <span class="tag">On-page SEO</span>
+      </div>
+    </div>
+  </section>
 
-  function go(n) {
-    cur = Math.max(0, Math.min(total - 1, n));
-    slidesEl.style.transform = `translateX(-${cur * 100}%)`;
-    numEl.textContent = `${cur + 1} / ${total}`;
-    progEl.style.width = `${((cur + 1) / total) * 100}%`;
-    prevBtn.disabled = cur === 0;
-    nextBtn.disabled = cur === total - 1;
-    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
-  }
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="section-heading">Skills &amp; Tools</div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-label">Development</div>
+        <div class="skill-items">Shopify / Liquid<br>WordPress / PHP<br>Webflow<br>HTML, CSS, JavaScript<br>Custom sections &amp; themes</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-label">Performance &amp; SEO</div>
+        <div class="skill-items">Core Web Vitals<br>Technical SEO<br>On-page SEO<br>Site speed audits<br>Internal linking &amp; indexing</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-label">Design</div>
+        <div class="skill-items">Figma<br>UI/UX wireframing<br>Conversion design<br>Asset optimization<br>Design systems</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-label">Ecommerce</div>
+        <div class="skill-items">Shopify Partner<br>Product / data migrations<br>Theme development<br>PDP optimization<br>Conversion features</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-label">Content &amp; Writing</div>
+        <div class="skill-items">SEO blog writing<br>Copywriting<br>Page copy<br>Content formatting<br>Brand voice</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-label">Client &amp; Project</div>
+        <div class="skill-items">Scoped proposals<br>White-label work<br>Client communications<br>Project coordination<br>Remote team workflows</div>
+      </div>
+    </div>
+  </section>
 
-  prevBtn.addEventListener('click', () => go(cur - 1));
-  nextBtn.addEventListener('click', () => go(cur + 1));
+  <!-- EDUCATION & EARLIER -->
+  <section class="section">
+    <div class="section-heading">Education &amp; Earlier Career</div>
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(cur + 1);
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(cur - 1);
-  });
+    <div class="edu-entry">
+      <div class="edu-top">
+        <div class="edu-deg">Bachelor of Library and Information Science</div>
+        <div class="edu-period">University of San Carlos</div>
+      </div>
+      <div class="edu-school">University of San Carlos, Cebu City</div>
+      <div class="edu-note">Foundation in information architecture, research methods, and knowledge organization — skills that carry directly into site structure and content strategy.</div>
+    </div>
 
-  // Swipe support
-  let touchX = null;
-  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
-  document.addEventListener('touchend', e => {
-    if (touchX === null) return;
-    const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
-    touchX = null;
-  });
-</script>
+    <hr class="job-divider" />
+
+    <div class="edu-entry">
+      <div class="edu-top">
+        <div class="edu-deg">High School Teacher</div>
+        <div class="edu-period">Sep 2015 – May 2019</div>
+      </div>
+      <div class="edu-school">LWCLC</div>
+      <div class="edu-note">Taught visual design, contemporary art, digital filmmaking, creative writing, literature, and computer subjects with practical projects. Wrote and directed a live Christmas performance. Coordinated with school leadership, parents, and students.</div>
+    </div>
+
+    <hr class="job-divider" />
+
+    <div class="edu-entry">
+      <div class="edu-top">
+        <div class="edu-deg">Multimedia Librarian</div>
+        <div class="edu-period">Jan 2012 – May 2015</div>
+      </div>
+      <div class="edu-school">Cebu Institute of Technology</div>
+      <div class="edu-note">Rebranded the library's print assets, designed animated presentations, and produced a virtual library tour. Conducted database and search engine workshops for college students and faculty. Managed AV room bookings and a team of working scholars.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="cv-footer">
+    <a class="cv-footer-logo" href="https://lorrainerafols.com">lorraine<span>rafols</span></a>
+    <div class="cv-footer-note">Available for freelance projects, part-time work, and agency white-label partnerships.</div>
+  </footer>
+
+</div><!-- /page -->
+
 </body>
 </html>
